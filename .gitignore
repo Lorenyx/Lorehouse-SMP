@@ -1,2 +1,7 @@
 # Keep players keybinds
 options.txt
+.fabric/*
+logs/*
+imgui.ini
+ds_private_storage.json
+minecraftinstance.json
