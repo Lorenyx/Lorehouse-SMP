@@ -10,24 +10,49 @@
 #
 ######################################################################
 import os
+import logging as log
 
 from subprocess import run
 
-def has_dependencies():
-    # First check if .portable exists
-    if not os.path.exists('.portablegit/bin/git.exe'):
+REPO_URL = 'https://github.com/Lorenyx/Lorehouse-SMP'
+GIT_EXE = '.portablegit/bin/git.exe'
+remote_url = 'https://github.com/git-for-windows/git/releases/download/v2.36.1.windows.1/PortableGit-2.36.1-64-bit.7z.exe'
+local_file = 'pgit.exe'
+
+log.basicConfig(filename='update.log', encoding='utf-8', level=log.DEBUG)
+
+def git_pull():
+    "Pulls latest commit/update from github"
+    run([GIT_EXE, 'pull'])
+
+
+def download_pgit():
+    try:
+        import requests
         
+        # Make http request for remote file data
+        data = requests.get(remote_url)
+        # Save file data to local copy
+        with open(local_file, 'wb') as file:
+            file.write(data.content)
+    except Exception as E:
+        log.error(f'Could not download pgit.exe - REASON - {E}')
+        exit(-1)
+
 
 if __name__ == '__main__':
-    # Check for first time setup
-    if not os.path.isfile('.issetup'):
+    # First time setup
+    if not os.path.isfile('.pgit'):
         # Download PortableGit file
-        if not os.path.isfile(''):
-            import requests
-            remote_url = 'https://github.com/git-for-windows/git/releases/download/v2.36.1.windows.1/PortableGit-2.36.1-64-bit.7z.exe'
-            local_file = 'pgit-2.36.1-64bit.exe'
-            # Make http request for remote file data
-            data = requests.get(remote_url)
-            # Save file data to local copy
-            with open(local_file, 'wb') as file:
-                file.write(data.content)
+        if not os.path.isfile('pgit.exe'):
+            log.info('Downloading PortableGit to {local_file} @ {remote_url}')
+            download_pgit()
+        # Run pgit installer
+        log.info(f'Installing PortableGit')
+        run('pgit.exe')
+        log.info('PortableGit installed')
+        # Rename to hidden folder
+        os.rename('PortableGit', '.portablegit')
+    # Check for updates
+    log.info('Pulling latest commit')
+    git_pull()

@@ -1,10 +1,18 @@
-# Keep players keybinds
+# Minecraft player settings
 options.txt
+servers.dat
 .fabric/
 
+# CurseForge Client files
 imgui.ini
 ds_private_storage.json
 minecraftinstance.json
 
+# Personal and log files
 saves/
 logs/
+**/*.log
+
+# Portable git files
+pgit.exe
+.portablegit/
