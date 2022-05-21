@@ -17,3 +17,13 @@ logs/
 pgit.exe
 .pgit
 .portablegit/
+
+# Compilation files
+build/
+dist/
+install/
+Lib/
+pyinstaller/
+scripts/
+pyvenv.cfg
+update.spec
