@@ -69,5 +69,4 @@ if __name__ == '__main__':
     # Check for updates
     log.info('Pulling latest commit')
     git_pull()
-    log.info('')
     git_restore()
