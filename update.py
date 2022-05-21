@@ -22,9 +22,12 @@ local_file = 'pgit.exe'
 log.basicConfig(filename='update.log', filemode='w', encoding='utf-8', level=log.DEBUG)
 
 def git_pull():
-    "Pulls latest commit/update from github"
+    "Pulls latest commit"
     run([GIT_EXE, 'pull'])
 
+def git_restore():
+    "Restores to latest commit"
+    run([GIT_EXE, 'restore', '.'])
 
 def download_pgit():
     try:
