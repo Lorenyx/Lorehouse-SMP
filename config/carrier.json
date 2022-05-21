@@ -1,7 +1,11 @@
 {
-  "enableGloves": true,
+  "enableGloves": false,
   "slownessLevel": 2,
   "hungerExhaustion": 0.05,
   "type": "BLACKLIST",
-  "list": []
+  "list": [
+    "minecraft:spawner",
+    "lootr:lootr_chest",
+    "lootr:lootr_barrel"
+  ]
 }
