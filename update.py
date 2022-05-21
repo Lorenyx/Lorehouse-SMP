@@ -19,7 +19,7 @@ GIT_EXE = '.portablegit/bin/git.exe'
 remote_url = 'https://github.com/git-for-windows/git/releases/download/v2.36.1.windows.1/PortableGit-2.36.1-64-bit.7z.exe'
 local_file = 'pgit.exe'
 
-log.basicConfig(filename='update.log', encoding='utf-8', level=log.DEBUG)
+log.basicConfig(filename='update.log', filemode='w', encoding='utf-8', level=log.DEBUG)
 
 def git_pull():
     "Pulls latest commit/update from github"
@@ -48,11 +48,15 @@ if __name__ == '__main__':
             log.info('Downloading PortableGit to {local_file} @ {remote_url}')
             download_pgit()
         # Run pgit installer
-        log.info(f'Installing PortableGit')
-        run('pgit.exe')
-        log.info('PortableGit installed')
-        # Rename to hidden folder
-        os.rename('PortableGit', '.portablegit')
+        if not os.path.isdir('.portablegit'):
+            log.info(f'Installing PortableGit')
+            run('pgit.exe')
+            log.info('Done')
+            # Rename to hidden folder
+            os.rename('PortableGit', '.portablegit')
+        # Create .pgit to show its instaleld
+        with open('.pgit', 'w+') as fp:
+            fp.write("true")
     # Check for updates
     log.info('Pulling latest commit')
     git_pull()
