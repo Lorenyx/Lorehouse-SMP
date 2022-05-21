@@ -1,5 +1,5 @@
 # Minecraft player settings
-options.txt
+/options.txt
 servers.dat
 .fabric/
 
@@ -27,3 +27,4 @@ pyinstaller/
 scripts/
 pyvenv.cfg
 update.spec
+update.exe

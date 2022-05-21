@@ -8,6 +8,8 @@
 #   Occur with this file, or you are just curious, message "lorenyx#0451"
 #   on Discord for more information. Have fun!
 #
+#   $ pyinstaller update.py --onefile -p install\Lib\site-packages
+#
 ######################################################################
 import os
 import logging as log
@@ -20,6 +22,10 @@ remote_url = 'https://github.com/git-for-windows/git/releases/download/v2.36.1.w
 local_file = 'pgit.exe'
 
 log.basicConfig(filename='update.log', filemode='w', encoding='utf-8', level=log.DEBUG)
+
+def git(cmd):
+    "Does git command"
+    run([GIT_EXE, cmd])
 
 def git_pull():
     "Pulls latest commit"
@@ -62,4 +68,6 @@ if __name__ == '__main__':
             fp.write("true")
     # Check for updates
     log.info('Pulling latest commit')
+    git_pull()
+    log.info('')
     git_restore()
