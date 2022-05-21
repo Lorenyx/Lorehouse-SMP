@@ -59,4 +59,4 @@ if __name__ == '__main__':
             fp.write("true")
     # Check for updates
     log.info('Pulling latest commit')
-    git_pull()
+    git_restore()

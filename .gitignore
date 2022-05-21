@@ -15,4 +15,5 @@ logs/
 
 # Portable git files
 pgit.exe
+.pgit
 .portablegit/
