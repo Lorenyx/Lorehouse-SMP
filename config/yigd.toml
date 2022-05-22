@@ -73,9 +73,9 @@ glowingGrave = true
 glowMinDistance = 0
 glowMaxDistance = 10
 [utilitySettings.soulboundEnchant]
-enabled = false
-isTreasure = false
-villagerTrade = true
+enabled = true
+isTreasure = true
+villagerTrade = false
 tableAndLoot = false
 [utilitySettings.deathSightEnchant]
 enabled = false
