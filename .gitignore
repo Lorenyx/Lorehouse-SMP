@@ -3,3 +3,5 @@
 
 # Exclude update.py
 !/.gitignore
+!/README.md
+!/requirements.txt
