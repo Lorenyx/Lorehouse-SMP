@@ -1,0 +1,7 @@
+# Ignore all files
+/*
+!/.gitignore
+# Except for mods specific folders
+!mods/
+!config/
+!scripts/
