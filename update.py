@@ -17,7 +17,7 @@ import shutil
 import sys
 import logging as log
 
-from subprocess import run
+from subprocess import run, PIPE
 
 REPO_URL = 'https://github.com/Lorenyx/Lorehouse-SMP'
 GIT_EXE = '.portablegit/bin/git.exe'
@@ -43,12 +43,18 @@ LOG_STREAM = open(LOG_FILE, 'a+')
 
 def _git(cmd):
     "Does git command"
+    if isinstance(cmd, str):
+        cmd = [cmd]
+        # Run git command
     if isinstance(cmd, list):
-        run([GIT_EXE]+cmd, stderr=LOG_STREAM, stdout=LOG_STREAM)
-    elif isinstance(cmd, str):
-        run([GIT_EXE, cmd], stderr=LOG_STREAM, stdout=LOG_STREAM)
+        result = run([GIT_EXE]+cmd, stdout=PIPE)
+        if result.stdout:
+            log.info(result.stdout.decode('UTF-8'))
+        if result.stderr:
+            log.error(result.stderr.decode('UTF-8'))
     else:
         log.warning(f'Unknown command - CMD - {cmd!r}')
+        return  
 
 
 def update():
@@ -98,7 +104,7 @@ def setup():
 
 
 if __name__ == '__main__':
-    log.info('Running update.exe - v0.0.2')
+    log.info('Running update.exe - v0.0.5')
     setup()
     update()
     LOG_STREAM.close()
