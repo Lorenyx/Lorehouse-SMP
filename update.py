@@ -20,7 +20,7 @@ from subprocess import run
 
 REPO_URL = 'https://github.com/Lorenyx/Lorehouse-SMP'
 GIT_EXE = '.portablegit/bin/git.exe'
-LOG_FILE = 'logs/lgit.log'
+LOG_FILE_NAME = 'logs/lgit.log'
 
 DOWNLOAD_URL = 'https://github.com/git-for-windows/git/releases/download/v2.36.1.windows.1/PortableGit-2.36.1-64-bit.7z.exe'
 INSTALL_FILE = 'pgit.exe'
@@ -29,7 +29,8 @@ TMP_LOC = 'tmp'
 # Setup logging and log file
 if not os.path.isdir('logs'):
     os.mkdir('logs')
-log.basicConfig(filename=LOG_FILE, filemode='w', encoding='utf-8', level=log.DEBUG)
+LOG_FILE = open(LOG_FILE_NAME, 'a+')
+log.basicConfig(filename=LOG_FILE_NAME, filemode='w', encoding='utf-8', level=log.DEBUG)
 
 
 def _git(cmd):
@@ -45,14 +46,14 @@ def _git(cmd):
 def update():
     # Check if repo already exists
     if not os.path.isdir('.git'):
-        log.info(f'Cloning from {REPO_URL}')
-        _git(['clone', '--no-checkout', REPO_URL, TMP_LOC])
+        log.info(f'Cloning "client" from {REPO_URL}')
+        _git(['clone', '-b', 'client', '--single-branch', REPO_URL])
         # Move and delete old folder
         shutil.move(os.path.join(TMP_LOC, '.git'), '.git')
         shutil.rmtree(os.path.join(TMP_LOC, '.git'))
     # Download files to merge
     log.info('Pulling latest files')
-    _git(['reset', '--hard', 'HEAD'])
+    _git(['pull'])
 
 
 
