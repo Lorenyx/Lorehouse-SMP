@@ -1,6 +1,6 @@
 ######################################################################
 # 
-#           Made by Lorenyx, Updated 5/20/22
+#           Made by Lorenyx, Updated 5/22/22
 #   If you are reading this and don't know what this file is, it is
 #   supposed to download the Lorehouse minecraft modpack and update 
 #   the local files without requiring a new Forge profile to be made
@@ -8,7 +8,7 @@
 #   Occur with this file, or you are just curious, message "lorenyx#0451"
 #   on Discord for more information. Have fun!
 #
-#   $ pyinstaller update.py --onefile -p install\Lib\site-packages
+#   $ pyinstaller --onefile update.py
 #
 ######################################################################
 import os
@@ -39,13 +39,14 @@ log.basicConfig(
     ],
 )
 
+LOG_STREAM = open(LOG_FILE, 'a')
 
 def _git(cmd):
     "Does git command"
     if isinstance(cmd, list):
-        run([GIT_EXE]+cmd)
+        run([GIT_EXE]+cmd, stderr=LOG_STREAM, stdout=LOG_STREAM)
     elif isinstance(cmd, str):
-        run([GIT_EXE, cmd])
+        run([GIT_EXE, cmd], stderr=LOG_STREAM, stdout=LOG_STREAM)
     else:
         log.warning(f'Unknown command - CMD - {cmd!r}')
 
@@ -58,10 +59,12 @@ def update():
         # Move and delete old folder
         shutil.move(os.path.join(TMP_LOC, '.git'), '.git')
         shutil.rmtree(os.path.join(TMP_LOC))
+        _git(['restore', '.'])
+        _git(['clean', '-f', '-d', '.'])
     # Download files to merge
     log.info('Pulling latest files')
-    _git(['restore', '.'])
-    _git(['clean', '-f', '-d', '.'])
+    _git('pull')
+    
 
 
 
@@ -97,3 +100,4 @@ def setup():
 if __name__ == '__main__':
     setup()
     update()
+    LOG_STREAM.close()
