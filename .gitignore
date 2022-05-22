@@ -9,3 +9,5 @@
 
 # Config files to ignore
 config/voicechat
+config/iris.properties
+config/indium-renderer.properties
