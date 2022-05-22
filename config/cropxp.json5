@@ -1,5 +1,5 @@
 {
-	"autoReplant": true,
+	"autoReplant": false,
 	"chance": 100,
 	"amount": 1,
 	"cropDenyList": [
