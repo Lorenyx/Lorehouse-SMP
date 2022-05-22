@@ -6,7 +6,7 @@
 // var amethyst = <item:minecraft:amethyst_shard>;
 
 // var diamond_block = <item:minecraft:diamond_block>;
-var diamond = <item:minecraft:diamond>;
+// var diamond = <item:minecraft:diamond>;
 
 // var gold_block = <item:minecraft:gold_block>;
 // var gold = <item:minecraft:gold_ingot>;
@@ -24,9 +24,9 @@ var diamond = <item:minecraft:diamond>;
 // Diamond token
 craftingTable.removeByName("tokenablefurnaces:diamondtoken");
 craftingTable.addShaped("diamond_token", <item:tokenablefurnaces:diamondtoken>, [
-    [diamond, diamond, diamond],
-    [diamond, <item:tokenablefurnaces:goldtoken>, diamond],
-    [diamond, diamond, diamond]
+    [<item:minecraft:diamond>, <item:minecraft:diamond>, <item:minecraft:diamond>],
+    [<item:minecraft:diamond>, <item:tokenablefurnaces:goldtoken>, <item:minecraft:diamond>],
+    [<item:minecraft:diamond>, <item:minecraft:diamond>, <item:minecraft:diamond>]
 ]);
 
 // // Gold token
