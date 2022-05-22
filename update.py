@@ -39,7 +39,7 @@ log.basicConfig(
     ],
 )
 
-LOG_STREAM = open(LOG_FILE, 'a')
+LOG_STREAM = open(LOG_FILE, 'a+')
 
 def _git(cmd):
     "Does git command"
@@ -64,9 +64,9 @@ def update():
     # Download files to merge
     log.info('Pulling latest files')
     _git('pull')
+    _git(['restore', '.'])
+    _git(['clean', '-f', '-d', '.'])
     
-
-
 
 def setup():
     # Check that folder exists
@@ -98,6 +98,7 @@ def setup():
 
 
 if __name__ == '__main__':
+    log.info('Running update.exe - v0.0.2')
     setup()
     update()
     LOG_STREAM.close()
