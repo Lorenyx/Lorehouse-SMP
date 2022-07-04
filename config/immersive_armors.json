@@ -1,5 +1,7 @@
 {
   "hideSecondLayerUnderArmor": true,
+  "enableEffects": true,
+  "enableEnchantmentGlint": true,
   "enabledArmors": {
     "prismarine": true,
     "steampunk": true,

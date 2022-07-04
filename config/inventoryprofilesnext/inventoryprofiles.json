@@ -4,5 +4,9 @@
     },
     "GuiSettings": {
         "continuous_crafting_saved_value": false
+    },
+    "AutoRefillSettings": {
+        "refill_before_tool_break": false,
+        "allow_break_for_non_enchanted": true
     }
 }

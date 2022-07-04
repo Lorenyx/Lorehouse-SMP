@@ -1,8 +1,10 @@
 {
 	"basics": {
 		"favorites": [],
+		"hiddenFavorites": [],
+		"displayHistory": [],
 		// Declares whether cheating mode is on.
-		"cheating": true,
+		"cheating": false,
 		"favoritesEnabled": true,
 		"keyBindings": {
 			"recipeKeybind": {
@@ -30,7 +32,7 @@
 				"modifier": 0
 			},
 			"copyRecipeIdentifierKeybind": {
-				"keyCode": "key.mouse.middle",
+				"keyCode": "key.keyboard.unknown",
 				"modifier": 0
 			},
 			"favoriteKeybind": {
@@ -38,7 +40,7 @@
 				"modifier": 0
 			},
 			"exportImageKeybind": {
-				"keyCode": "key.keyboard.f8",
+				"keyCode": "key.keyboard.unknown",
 				"modifier": 0
 			},
 			"previousScreenKeybind": {
@@ -124,7 +126,7 @@
 		}
 	},
 	"appearance": {
-		"recipeScreenType": "UNSET",
+		"recipeScreenType": "ORIGINAL",
 		// Declares the appearance of REI windows.
 		"theme": "LIGHT",
 		"layout": {
@@ -150,9 +152,9 @@
 	},
 	"functionality": {
 		// Declares whether REI should remove the recipe book.
-		"disableRecipeBook": true,
+		"disableRecipeBook": false,
 		// Declares whether mob effects should be on the left side instead of the right side.
-		"leftSideMobEffects": false,
+		"leftSideMobEffects": true,
 		// Declares whether subsets is enabled.
 		"isSubsetsEnabled": false,
 		"allowInventoryHighlighting": true,
